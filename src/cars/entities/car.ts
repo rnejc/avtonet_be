@@ -4,13 +4,15 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 export class Car {
   @PrimaryGeneratedColumn()
   id: number;
-  @Column()
-  year: Date;
+  @Column({ type: 'int', comment: 'Year of manufacture (YYYY)' })
+  year: number;
   @Column()
   model: string;
-  @Column()
+  @Column({ comment: 'Mileage in kilometers (km)' })
   mileage: number;
-  @Column()
+  @Column({ type: 'decimal', precision: 3, scale: 1,
+            comment: 'Engine displacement in liters (L)'
+  })
   engineDisplacement: number;
   @Column()
   fuelType: string;
@@ -18,6 +20,8 @@ export class Car {
   transmission: string;
   @Column()
   color: string;
-  @Column()
+  @Column({ type: 'decimal', precision: 3, scale: 1,
+            comment: 'Fuel consumption in liters per 100 km (L/100km)'
+  })
   fuelConsumption: number;
 }
