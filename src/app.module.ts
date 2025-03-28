@@ -4,6 +4,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { Car } from './cars/entities/car';
 import { CarsModule } from './cars/cars.module';
+import { Brand } from "./brands/entity/brand";
+import { BrandsModule } from './brands/brands.module';
 
 @Module({
   imports: [
@@ -14,10 +16,11 @@ import { CarsModule } from './cars/cars.module';
       username: 'postgres',
       password: 'postgres',
       database: 'avtonet',
-      entities: [Car],
+      entities: [Car, Brand],
       synchronize: true,
     }),
     CarsModule,
+    BrandsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

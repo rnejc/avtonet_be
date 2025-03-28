@@ -9,28 +9,28 @@ import {UpdateCarDto} from "./entities/update-car.dto";
 export class CarsService {
   constructor(
     @InjectRepository(Car)
-    private carsRepository: Repository<Car>,
+    private carRepository: Repository<Car>,
   ) {}
 
   async findAll(): Promise<Car[]> {
-    return this.carsRepository.find();
+    return this.carRepository.find();
   }
 
   async create(createCarDto: CreateCarDto): Promise<Car> {
-    const newCar = this.carsRepository.create(createCarDto);
-    return this.carsRepository.save(newCar);
+    const newCar = this.carRepository.create(createCarDto);
+    return this.carRepository.save(newCar);
   }
 
   async update(id: number, updateCarDto: UpdateCarDto): Promise<Car> {
-    const car = this.carsRepository.findOne({ where: { id: id } });
+    const car = this.carRepository.findOne({ where: { id: id } });
     if (!car) {
       throw new NotFoundException('Avto ne obstaja');
     }
-    await this.carsRepository.update(id, updateCarDto);
-    return this.carsRepository.findOne({ where: { id: id } });
+    await this.carRepository.update(id, updateCarDto);
+    return this.carRepository.findOne({ where: { id: id } });
   }
 
   async delete(id: number): Promise<void> {
-    await this.carsRepository.delete(id);
+    await this.carRepository.delete(id);
   }
 }
