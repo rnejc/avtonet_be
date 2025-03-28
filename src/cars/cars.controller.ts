@@ -1,8 +1,16 @@
-import {Body, Controller, Delete, Get, Param, Patch, Post} from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { CarsService } from './cars.service';
 import { Car } from './entities/car';
-import { CreateCarDto } from "./entities/create-car.dto";
-import { UpdateCarDto } from "./entities/update-car.dto";
+import { CreateCarDto } from './entities/create-car.dto';
+import { UpdateCarDto } from './entities/update-car.dto';
 
 @Controller('cars')
 export class CarsController {
@@ -20,8 +28,8 @@ export class CarsController {
 
   @Patch(':id')
   async update(
-      @Param('id') id: string,
-      @Body() updateCarDto: UpdateCarDto,
+    @Param('id') id: string,
+    @Body() updateCarDto: UpdateCarDto,
   ): Promise<Car> {
     return this.carService.update(+id, updateCarDto);
   }

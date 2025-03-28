@@ -4,7 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { Car } from './cars/entities/car';
 import { CarsModule } from './cars/cars.module';
-import { Brand } from "./brands/entity/brand";
+import { Brand } from './brands/entity/brand';
 import { BrandsModule } from './brands/brands.module';
 
 @Module({

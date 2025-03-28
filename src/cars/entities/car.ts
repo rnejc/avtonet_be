@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Brand } from '../../brands/entity/brand';
 
 @Entity('cars') // Table name
 export class Car {
@@ -14,8 +21,11 @@ export class Car {
   @Column({ comment: 'Mileage in kilometers (km)' })
   mileage: number;
 
-  @Column({ type: 'decimal', precision: 3, scale: 1,
-            comment: 'Engine displacement in liters (L)'
+  @Column({
+    type: 'decimal',
+    precision: 3,
+    scale: 1,
+    comment: 'Engine displacement in liters (L)',
   })
   engineDisplacement: number;
 
@@ -28,8 +38,15 @@ export class Car {
   @Column()
   color: string;
 
-  @Column({ type: 'decimal', precision: 3, scale: 1,
-            comment: 'Fuel consumption in liters per 100 km (L/100km)'
+  @Column({
+    type: 'decimal',
+    precision: 3,
+    scale: 1,
+    comment: 'Fuel consumption in liters per 100 km (L/100km)',
   })
   fuelConsumption: number;
+
+  @ManyToOne(() => Brand, (brand) => brand.cars, { nullable: false })
+  @JoinColumn({ name: 'brand_id' })
+  brand: Brand;
 }
