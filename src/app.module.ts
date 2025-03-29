@@ -8,6 +8,7 @@ import { Brand } from './brands/entity/brand';
 import { BrandsModule } from './brands/brands.module';
 import { UsersModule } from './users/users.module';
 import { User } from './users/entity/user.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { User } from './users/entity/user.entity';
     CarsModule,
     BrandsModule,
     UsersModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
