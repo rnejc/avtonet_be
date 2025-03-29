@@ -6,6 +6,8 @@ import { Car } from './cars/entities/car';
 import { CarsModule } from './cars/cars.module';
 import { Brand } from './brands/entity/brand';
 import { BrandsModule } from './brands/brands.module';
+import { UsersModule } from './users/users.module';
+import { User } from './users/entity/user.entity';
 
 @Module({
   imports: [
@@ -16,11 +18,12 @@ import { BrandsModule } from './brands/brands.module';
       username: 'postgres',
       password: 'postgres',
       database: 'avtonet',
-      entities: [Car, Brand],
+      entities: [Car, Brand, User],
       synchronize: true,
     }),
     CarsModule,
     BrandsModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
