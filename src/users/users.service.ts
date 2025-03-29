@@ -14,7 +14,12 @@ export class UsersService {
     const newUser = this.userRepository.create(user);
     return await this.userRepository.save(newUser);
   }
+
   async findByEmail(email: string): Promise<User | null> {
     return await this.userRepository.findOne({ where: { email } });
+  }
+
+  async findById(id: number): Promise<User | null> {
+    return await this.userRepository.findOne({ where: { id } });
   }
 }

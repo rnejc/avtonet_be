@@ -6,13 +6,17 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
+  Request,
 } from '@nestjs/common';
 import { CarsService } from './cars.service';
 import { Car } from './entities/car';
 import { CreateCarDto } from './entities/create-car.dto';
 import { UpdateCarDto } from './entities/update-car.dto';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('cars')
+@UseGuards(JwtAuthGuard)
 export class CarsController {
   constructor(private readonly carService: CarsService) {}
 
@@ -21,9 +25,17 @@ export class CarsController {
     return this.carService.findAll();
   }
 
+  @Get(':id')
+  async findOne(@Param('id') id: string): Promise<Car> {
+    return this.carService.findOne(+id);
+  }
+
   @Post()
-  async create(@Body() createCarDto: CreateCarDto): Promise<Car> {
-    return this.carService.create(createCarDto);
+  async create(
+    @Body() createCarDto: CreateCarDto,
+    @Request() req,
+  ): Promise<Car> {
+    return this.carService.create(createCarDto, req.user.userId);
   }
 
   @Patch(':id')

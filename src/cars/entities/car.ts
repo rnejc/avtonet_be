@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Brand } from '../../brands/entity/brand';
+import { User } from '../../users/entity/user.entity';
 
 @Entity('cars') // Table name
 export class Car {
@@ -49,4 +50,8 @@ export class Car {
   @ManyToOne(() => Brand, (brand) => brand.cars, { nullable: false })
   @JoinColumn({ name: 'brand_id' })
   brand: Brand;
+
+  @ManyToOne(() => User, (user) => user.cars, { nullable: false })
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 }
