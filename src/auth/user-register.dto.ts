@@ -21,4 +21,6 @@ export class UserRegisterDto {
   lastName: string;
   @IsOptional()
   avatar?: string;
+  @IsOptional()
+  phoneNumber?: number;
 }

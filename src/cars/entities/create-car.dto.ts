@@ -26,4 +26,7 @@ export class CreateCarDto {
 
   @IsNumber({ allowInfinity: false, allowNaN: false, maxDecimalPlaces: 1 })
   fuelConsumption: number; // liters per 100 km
+
+  @IsNumber()
+  price: number; // price in EUR
 }

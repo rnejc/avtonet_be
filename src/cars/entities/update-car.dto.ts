@@ -40,5 +40,9 @@ export class UpdateCarDto {
 
   @IsOptional()
   @IsNumber()
+  price?: number;
+
+  @IsOptional()
+  @IsNumber()
   genre_id?: number;
 }

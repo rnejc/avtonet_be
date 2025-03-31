@@ -35,7 +35,7 @@ export class CarsService {
   async update(id: number, updateCarDto: UpdateCarDto): Promise<Car> {
     const car = this.carRepository.findOne({ where: { id: id } });
     if (!car) {
-      throw new NotFoundException('Avto ne obstaja');
+      throw new NotFoundException("Car doesn't exist");
     }
     await this.carRepository.update(id, updateCarDto);
     return this.carRepository.findOne({ where: { id: id } });
