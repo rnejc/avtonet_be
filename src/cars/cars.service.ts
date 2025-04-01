@@ -30,17 +30,30 @@ export class CarsService {
   async create(createCarDto: CreateCarDto, userId: number): Promise<Car> {
     const user = await this.userService.findById(userId);
 
-    const newCar = this.carRepository.create({ ...createCarDto, user });
+    const newCar = this.carRepository.create({
+      ...createCarDto,
+      user,
+      image: createCarDto.image || null, // Ensure image is properly set
+    });
+
     return this.carRepository.save(newCar);
   }
 
   async update(id: number, updateCarDto: UpdateCarDto): Promise<Car> {
-    const car = this.carRepository.findOne({ where: { id: id } });
+    const car = await this.carRepository.findOne({ where: { id } });
+
     if (!car) {
       throw new NotFoundException("Car doesn't exist");
     }
-    await this.carRepository.update(id, updateCarDto);
-    return this.carRepository.findOne({ where: { id: id } });
+
+    const updatedCar = {
+      ...car,
+      ...updateCarDto,
+      image: updateCarDto.image || car.image, // Keep existing image if not provided
+    };
+
+    await this.carRepository.save(updatedCar);
+    return updatedCar;
   }
 
   async delete(id: number): Promise<void> {

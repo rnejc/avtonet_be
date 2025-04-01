@@ -1,4 +1,11 @@
-import { IsInt, IsNumber, IsString, Max, Min } from 'class-validator';
+import {
+  IsInt,
+  IsNumber,
+  IsOptional,
+  IsString,
+  Max,
+  Min,
+} from 'class-validator';
 
 export class CreateCarDto {
   @IsInt()
@@ -29,4 +36,8 @@ export class CreateCarDto {
 
   @IsNumber()
   price: number; // price in EUR
+
+  @IsOptional()
+  @IsString()
+  image?: string;
 }

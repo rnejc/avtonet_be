@@ -50,6 +50,9 @@ export class Car {
   @Column()
   price: number;
 
+  @Column({ nullable: true })
+  image: string;
+
   @ManyToOne(() => Brand, (brand) => brand.cars, { nullable: false })
   @JoinColumn({ name: 'brand_id' })
   brand: Brand;

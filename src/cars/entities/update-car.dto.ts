@@ -9,6 +9,10 @@ import {
 
 export class UpdateCarDto {
   @IsOptional()
+  @IsString()
+  image?: string;
+
+  @IsOptional()
   @IsInt()
   @Min(1900)
   @Max(new Date().getFullYear())
