@@ -15,13 +15,15 @@ export class CarsService {
   ) {}
 
   async findAll(): Promise<Car[]> {
-    return this.carRepository.find();
+    return this.carRepository.find({
+      relations: ['brand', 'user'],
+    });
   }
 
   async findOne(id: number): Promise<Car> {
     return await this.carRepository.findOne({
       where: { id },
-      relations: ['brand'],
+      relations: ['brand', 'user'],
     });
   }
 
